@@ -22,5 +22,6 @@ class CenterMasterView(views.APIView):
                     'Centertypecd' : CenterMaster.MedicalCenterTypeCode,
                     'Sts' : CenterMaster.Status,
                 })
-            return JsonResponse({'success': True, 'data': result}, status=201)
+                sorted_data = sorted(result, key=lambda x: x['Centernm'])
+            return JsonResponse({'success': True, 'data': sorted_data}, status=201)
         return JsonResponse({'success': False, 'message': 'CenterMaster not found!', 'data': []}, status=202)
